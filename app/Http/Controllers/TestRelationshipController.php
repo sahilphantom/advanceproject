@@ -16,7 +16,8 @@ class TestRelationshipController extends Controller
     public function countryPosts($countryId)
     {
         $country = Country::with('posts')->findOrFail($countryId);
-        return response()->json($country->posts);
+
+    return view('countries.posts', compact('country'));
     }
 
     /**
@@ -24,8 +25,8 @@ class TestRelationshipController extends Controller
      */
     public function allComments()
     {
-        $comments = Comment::with(['user', 'commentable'])->get();
-        return response()->json($comments);
+         $comments = Comment::with(['user', 'commentable'])->get();
+    return view('comments.index', compact('comments'));
     }
 
     /**
@@ -34,7 +35,7 @@ class TestRelationshipController extends Controller
     public function allPostsWithTags()
     {
         $posts = Post::with('tags')->get();
-        return response()->json($posts);
+    return view('posts.tags', compact('posts'));
     }
 
     /**
@@ -42,7 +43,7 @@ class TestRelationshipController extends Controller
      */
     public function allVideosWithTags()
     {
-        $videos = Video::with('tags')->get();
-        return response()->json($videos);
+         $videos = Video::with('tags')->get();
+    return view('videos.tags', compact('videos'));
     }
 }
