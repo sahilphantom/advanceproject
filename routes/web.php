@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+use App\Http\Controllers\TestRelationshipController;
+
+Route::get('/country/{id}/posts', [TestRelationshipController::class, 'countryPosts']);
+Route::get('/comments', [TestRelationshipController::class, 'allComments']);
+Route::get('/posts-with-tags', [TestRelationshipController::class, 'allPostsWithTags']);
+Route::get('/videos-with-tags', [TestRelationshipController::class, 'allVideosWithTags']);
+
