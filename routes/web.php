@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FormController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\TestRelationshipController;
@@ -12,5 +13,6 @@ Route::get('/videos/tags', [TestRelationshipController::class, 'allVideosWithTag
 
 Route::get('/xss-demo', [XSSDemoController::class, 'show']);
 
-
+Route::get('/form', [FormController::class, 'index']);
+Route::post('/form-submit', [FormController::class, 'submit']);
 
