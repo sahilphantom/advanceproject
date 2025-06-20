@@ -13,6 +13,8 @@ Route::get('/videos/tags', [TestRelationshipController::class, 'allVideosWithTag
 
 Route::get('/xss-demo', [XSSDemoController::class, 'show']);
 
-Route::get('/form', [FormController::class, 'index']);
-Route::post('/form-submit', [FormController::class, 'submit']);
-
+Route::get('/users', [FormController::class, 'usersPage'])->name('form.users.page');
+Route::post('/form-submit', [FormController::class, 'submit'])->name('form.submit');
+Route::get('/form-users', [FormController::class, 'allUsers'])->name('form.users');
+Route::get('/form-users/{id}', [FormController::class, 'getUser'])->name('form.user');
+Route::put('/form-users/{id}', [FormController::class, 'update'])->name('form.user.update');
