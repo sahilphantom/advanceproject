@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\FormUser;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -29,10 +30,24 @@ class FormController extends Controller
         return response()->json(['message' => 'User created successfully']);
     }
 
-    public function allUsers()
-    {
-        return response()->json(FormUser::all());
+ public function allUsers(Request $request)
+{
+    $perPage = 10;
+    $users = \App\Models\FormUser::orderBy('created_at', 'desc')->paginate($perPage);
+
+    // Append formatted date to each item
+    $users->getCollection()->transform(function ($user) {
+        $user->created_human = Carbon::parse($user->created_at)->diffForHumans(); // e.g., "2 minutes ago"
+        $user->created_formatted = Carbon::parse($user->created_at)->format('d F Y - h:i A'); // e.g., "24 June 2025 - 11:30 AM"
+        return $user;
+    });
+
+    if ($request->ajax() || $request->wantsJson()) {
+        return response()->json($users);
     }
+
+    return view('users');
+}
 
     public function getUser($id)
     {

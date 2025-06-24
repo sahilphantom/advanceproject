@@ -121,18 +121,28 @@
 
         <p class="success" id="responseMessage"></p>
     </form>
+    <div id="loader" style="display: none; text-align: center; margin-top: 10px;">
+    <strong style="color: #2563eb;">Processing...</strong>
+</div>
+
+<div id="alertBox" style="display: none; text-align: center; margin-top: 20px;">
+    <p id="alertMessage" style="padding: 10px; border-radius: 6px;"></p>
+</div>
+
 
     <h2 style="margin-top: 50px;">All Users</h2>
     <table>
         <thead>
             <tr>
-                <th>Name</th><th>Email</th><th>Age</th><th>Action</th>
+                <th>Name</th><th>Email</th><th>Age</th><th>Created At</th><th>Action</th>
             </tr>
         </thead>
         <tbody id="userTable">
             {{-- Populated by app.js --}}
         </tbody>
     </table>
+    <div id="pagination" style="margin-top: 20px; text-align: center;"></div>
+
 
 </body>
 </html>
