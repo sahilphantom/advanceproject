@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\TestRelationshipController;
 use App\Http\Controllers\XSSDemoController;
+use App\Livewire\UserSearch;
 
 // Route::get('/country/{id}/posts', [TestRelationshipController::class, 'countryPosts']);
 // Route::get('/comments', [TestRelationshipController::class, 'allComments']);
@@ -26,5 +27,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/user-search', function () {
+    return view('user'); // or 'user-search' if you rename the file
+});
 
 
